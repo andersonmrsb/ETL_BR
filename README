@@ -1,0 +1,133 @@
+Objetivo
+
+O principal objetivo deste projeto é automatizar a coleta e armazenamento de informações empresariais.
+
+Ao informar um CNPJ, o sistema realiza uma consulta na BrasilAPI, obtém os dados da empresa, realiza tratamentos necessários para garantir a qualidade das informações e salva os dados em uma base PostgreSQL.
+
+Posteriormente, esses dados podem ser utilizados para criação de indicadores, relatórios e dashboards.
+
+Como o Projeto Funciona
+
+O projeto foi dividido em três etapas principais do processo ETL.
+
+Extração dos Dados (Extract)
+
+Nesta etapa o usuário informa um CNPJ através do terminal.
+
+O sistema realiza uma requisição para a BrasilAPI utilizando a biblioteca Requests e recebe uma resposta em formato JSON contendo informações da empresa consultada.
+
+Entre as informações coletadas estão:
+
+CNPJ
+UF
+Razão Social
+Nome Fantasia
+CNAE Fiscal
+Descrição do CNAE
+Natureza Jurídica
+Data de Início das Atividades
+Situação Cadastral
+
+Também foram implementados tratamentos para possíveis erros durante a consulta, como CNPJ inválido, CNPJ inexistente, timeout da requisição ou falhas temporárias da API.
+
+Transformação dos Dados (Transform)
+
+Após a extração, os dados passam por um processo de limpeza e padronização utilizando a biblioteca Pandas.
+
+Durante esta etapa são realizadas algumas transformações importantes para garantir a qualidade das informações.
+
+Os principais tratamentos realizados são:
+
+Padronização do CNPJ para sempre possuir 14 caracteres.
+Conversão de datas para formatos adequados para armazenamento.
+Remoção de registros duplicados.
+Tratamento de valores nulos.
+Tratamento de campos vazios.
+Substituição de informações ausentes pelo valor "Não se aplica".
+
+Essas transformações garantem que os dados permaneçam consistentes antes de serem armazenados no banco de dados.
+
+Carga dos Dados (Load)
+
+Após a transformação, os registros são enviados para um banco de dados PostgreSQL.
+
+Os dados são armazenados em uma tabela chamada etl_br, criada especificamente para armazenar as informações retornadas pela BrasilAPI.
+
+A estrutura da tabela contém campos relacionados aos principais dados cadastrais das empresas consultadas.
+
+Além disso, foi implementado um controle de duplicidade utilizando o CNPJ como chave primária. Dessa forma, caso um CNPJ já exista no banco, o registro não será inserido novamente.
+
+Essa abordagem evita inconsistências e garante a integridade dos dados.
+
+Banco de Dados
+
+O banco de dados utilizado foi o PostgreSQL.
+
+As informações coletadas pela API são armazenadas em uma base estruturada, permitindo consultas SQL e integração com ferramentas de Business Intelligence.
+
+O banco foi configurado para armazenar informações empresariais de forma organizada, facilitando futuras análises e visualizações.
+
+Segurança
+
+Para aumentar a segurança do projeto, as credenciais de acesso ao banco de dados não são armazenadas diretamente no código fonte.
+
+Foi utilizado um arquivo .env para armazenar informações sensíveis como:
+
+Nome do banco de dados
+Usuário
+Senha
+Host
+Porta
+
+Essa prática evita a exposição de credenciais e segue boas práticas de desenvolvimento.
+
+Dashboard no Power BI
+
+Após a carga dos dados no PostgreSQL, o Power BI foi utilizado para criar visualizações e indicadores.
+
+Os dashboards desenvolvidos permitem acompanhar informações importantes sobre as empresas cadastradas no banco.
+
+Entre os principais indicadores criados estão:
+
+Quantidade Total de Empresas
+
+Exibe o número total de empresas armazenadas na base de dados.
+
+Empresas por Estado
+
+Permite identificar a distribuição geográfica das empresas cadastradas.
+
+Situação Cadastral
+
+Exibe a quantidade de empresas agrupadas por situação cadastral.
+
+Informações Detalhadas
+
+Apresenta uma tabela contendo os principais dados das empresas consultadas.
+
+Além disso, foram adicionados filtros interativos para permitir análises mais específicas.
+
+Tecnologias Utilizadas
+
+Durante o desenvolvimento do projeto foram utilizadas as seguintes tecnologias:
+
+Python
+Requests
+Pandas
+PostgreSQL
+SQL
+Power BI
+Python Dotenv
+BrasilAPI
+Aprendizados
+
+Este projeto permitiu aplicar diversos conceitos importantes da área de Dados, entre eles:
+
+Consumo de APIs REST.
+Manipulação de arquivos JSON.
+Transformação e limpeza de dados.
+Integração entre Python e PostgreSQL.
+Desenvolvimento de pipelines ETL.
+Utilização de variáveis de ambiente.
+Criação de dashboards no Power BI.
+Aplicação de boas práticas de organização de projetos.
