@@ -107,8 +107,8 @@ Apresenta uma tabela contendo os principais dados das empresas consultadas.
 
 Além disso, foram adicionados filtros interativos para permitir análises mais específicas.
 
-Tecnologias Utilizadas
 
+Tecnologias Utilizadas:
 Durante o desenvolvimento do projeto foram utilizadas as seguintes tecnologias:
 
 Python
@@ -119,7 +119,9 @@ SQL
 Power BI
 Python Dotenv
 BrasilAPI
-Aprendizados
+
+
+Aprendizados:
 
 Este projeto permitiu aplicar diversos conceitos importantes da área de Dados, entre eles:
 
