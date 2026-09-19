@@ -133,3 +133,158 @@ Desenvolvimento de pipelines ETL.
 Utilização de variáveis de ambiente.
 Criação de dashboards no Power BI.
 Aplicação de boas práticas de organização de projetos.
+
+
+COMO UTILIZAR A APLICAÇÃO
+
+1. Clonar o Repositório 
+
+Abra o terminal e execute: 
+( git clone URL_DO_REPOSITORIO )
+
+ 
+
+Entre na pasta do projeto: 
+
+( cd etl_brasil )
+
+ 
+
+2. Instalar as Dependências 
+
+Com o ambiente virtual ativado, execute: 
+pip install -r requirements.txt 
+
+Esse comando instalará todas as bibliotecas necessárias para o funcionamento da aplicação. 
+
+
+4. Configurar o Banco de Dados 
+
+Antes de executar o projeto, é necessário possuir o PostgreSQL instalado em sua máquina. 
+
+Abra seu pgAdmin (PostgreSQL) Crie um banco de dados chamado ETL_BR 
+
+Após criar o banco, execute o script SQL (etl_br.sql) responsável pela criação da tabela. 
+
+A tabela utilizada pela aplicação é (etl_br) 
+
+Ela armazenará todas as informações das empresas consultadas. 
+
+ 
+
+5. Configurar o Arquivo .env 
+
+Na raiz do projeto, crie um arquivo chamado: 
+
+.env 
+
+ 
+Dentro dele adicione as informações de acesso ao seu PostgreSQL: 
+
+DB_NAME=ETL_BR 
+DB_USER=postgres 
+DB_PASSWORD=SUA_SENHA 
+DB_HOST=localhost 
+DB_PORT=5432 
+
+Substitua "SUA_SENHA" pela senha utilizada durante a instalação do PostgreSQL. 
+
+ 
+6. Executar a Aplicação 
+
+Com todas as configurações realizadas, execute o arquivo principal: 
+( Python main.py )
+
+ 
+O sistema exibirá a seguinte mensagem: 
+Digite o CNPJ: 
+
+ 
+
+7. Consultar uma Empresa 
+
+Digite um CNPJ válido contendo 14 números. 
+
+Exemplo: 
+19131243000197 
+
+Após pressionar Enter, a aplicação realizará uma consulta na BrasilAPI. 
+
+ 
+
+8. Visualizar os Dados 
+
+Se o CNPJ for encontrado, os dados da empresa serão exibidos diretamente no terminal. 
+
+Exemplo: 
+
+=== EMPRESA ENCONTRADA === 
+CNPJ: 19131243000197 
+UF: SP 
+Razão Social: OPEN KNOWLEDGE BRASIL 
+Nome Fantasia: OPEN KNOWLEDGE BRASIL 
+Natureza Jurídica: Associação Privada 
+Situação Cadastral: ATIVA 
+
+
+9. Armazenamento Automático 
+
+Após a consulta, não é necessário realizar nenhuma ação adicional. 
+
+A aplicação executa automaticamente: 
+
+Extração dos dados da API 
+
+Tratamento dos dados 
+
+Inserção das informações no PostgreSQL 
+
+Tudo ocorre de forma automática após a consulta do CNPJ. 
+
+ 
+
+Como Verificar os Dados Salvos 
+
+Abra o PostgreSQL ou o pgAdmin e execute: 
+
+SELECT * FROM etl_br; 
+
+ 
+
+Como Atualizar o Dashboard no Power BI 
+
+Após inserir novos CNPJs no banco de dados: 
+
+Abra o Power BI. 
+
+Abra o dashboard criado para este projeto. 
+
+Clique em Refresh. 
+
+Aguarde a atualização. 
+
+Os novos registros serão carregados automaticamente para os gráficos e indicadores. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
